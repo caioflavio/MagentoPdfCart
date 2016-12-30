@@ -10,7 +10,7 @@
 	2. You can edit this route in config.xml
 
 # Example:
-![alt tag](http://i.imgur.com/ysdlPZ5.png)
+![alt tag](http://i.imgur.com/o9q41m1.png)
 
 # Customize:
 	1. You can customize pdf appearance only editing the phtml located in 
