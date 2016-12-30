@@ -30,10 +30,15 @@
 					<td><?= Mage::helper('core')->currency($item->subtotal, true, false); ?></td>
 				</tr>
 			<?php } ?>
+		<tr>
+			<td colspan=2>&nbsp;</td>
+			<td>Total</td>
+			<td><?= Mage::helper('core')->currency($this->getQuoteTotal(), true, false);?></td>
+		</tr>
 	</table>
 	<table>
 		<tr>
-			<td>Rodapé</td>
+			<td rowspan=4>Obs: Os valores e disponibilidade de produtos podem sofrer alteração a qualquer momento.</td>
 		</tr>
 	</table>
 </body>
