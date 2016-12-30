@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CaioFlavio_PDFCart>
+            <active>true</active>
+            <codePool>community</codePool>
+        </CaioFlavio_PDFCart>
+    </modules>
+</config>

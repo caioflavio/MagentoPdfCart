@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+	<frontend>
+        <routers>
+            <pdfcart>
+                <use>standard</use>
+                <args>
+                    <module>CaioFlavio_PDFCart</module>
+                    <frontName>pdfcart</frontName>
+                </args>
+            </pdfcart>
+        </routers>
+    </frontend>
+    <modules>
+        <CaioFlavio_PDFCart>
+            <version>0.0.1</version>
+        </CaioFlavio_PDFCart>
+    </modules>
+    <global>
+        <blocks>
+            <caioflavio_pdfcart>
+                <class>CaioFlavio_PDFCart_Block</class>
+            </caioflavio_pdfcart>
+        </blocks>        
+        <models>
+            <caioflavio_pdfcart>
+                <class>CaioFlavio_PDFCart_Model</class>
+            </caioflavio_pdfcart>
+        </models>
+        <helpers>
+            <pdfcart>
+                <class>CaioFlavio_PDFCart_Helper</class>
+            </pdfcart>
+        </helpers>
+    </global>
+</config>

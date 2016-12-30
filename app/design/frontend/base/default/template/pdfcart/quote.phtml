@@ -1,0 +1,41 @@
+<?php $cart  = $this->getQuoteData(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/pdfcart/pdfcart.css') ?>" media="all">
+	<link href="<?php echo $this->getSkinUrl('favicon.ico') ?>" rel="icon" type="image/ico" >
+	<title><?php echo Mage::getStoreConfig('pdfcart/general/page_title', Mage::app()->getStore()->getStoreId())?></title>
+</head>
+<body>
+<table>
+	<tr>
+		<td><img src="<?php echo $this->getSkinUrl('images/logo.png')?>"></td>
+	</tr>
+</table>
+	<table>
+		<tr>
+			<td>Data: <?php echo Mage::getModel('core/date')->date('d/m/Y H:i:s') ?></td>
+		</tr>
+		<tr>
+			<td>Produto</td>
+			<td>Quantidade</td>
+			<td>Preço Un.</td>
+			<td>Subtotal</td>
+		</tr>
+			<?php foreach ($cart as $item) { ?>
+				<tr>
+					<td><?= $item->name; ?></td>
+					<td><?= Mage::helper('core')->currency($item->price, true, false); ?></td>
+					<td><?= $item->qty ?></td>
+					<td><?= Mage::helper('core')->currency($item->subtotal, true, false); ?></td>
+				</tr>
+			<?php } ?>
+	</table>
+	<table>
+		<tr>
+			<td>Rodapé</td>
+		</tr>
+	</table>
+</body>
+</html>
+<table>
