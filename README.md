@@ -1,6 +1,14 @@
 # MagentoPdfCart
 ### Module for save current cart quote in pdf.
 
+# How to use:
+	1. You need to add a link wherever you want to /pdfcart controller
+	Ex: 
+	```html
+	<a href="yoursite.com.br/pdfcart">Link to you quote in pdf</a>
+	```
+	2. You can edit this route in config.xml
+	
 # Example:
 	[example1]: http://imgur.com/a/A90x6 "Preview Image 1"
 
