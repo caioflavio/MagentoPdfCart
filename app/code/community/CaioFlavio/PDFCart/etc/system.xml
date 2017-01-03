@@ -30,17 +30,25 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </page_title>  
+                        <logo_name>
+                            <label>Nome da Logo:</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Exemplos: logo.jpg, loja.png, empresa.gif.</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo_name> 
                         <document_name>
                             <label>Nome do documento:</label>
                             <frontend_type>text</frontend_type>
-                            <!-- <comment>Exemplos: logo.jpg, loja.png, empresa.gif.</comment> -->
-                            <sort_order>2</sort_order>
+                            <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </document_name>                                              
                     </fields>
-                </general>              
+                </general>             
             </groups>
         </pdfcart>
     </sections>
