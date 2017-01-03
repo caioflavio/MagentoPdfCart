@@ -1,44 +1,56 @@
-<?php $cart  = $this->getQuoteData(); ?>
+<?php $storeid 	 = Mage::app()->getStore()->getStoreId(); ?>
+<?php $cart  	 = $this->getQuoteData(); ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/pdfcart/pdfcart.css') ?>" media="all">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link href="<?php echo $this->getSkinUrl('favicon.ico') ?>" rel="icon" type="image/ico" >
-	<title><?php echo Mage::getStoreConfig('pdfcart/general/page_title', Mage::app()->getStore()->getStoreId())?></title>
+	<title><?php echo $this->getPageTitle($storeid) ?></title>
 </head>
 <body>
 	<table class="table">
 		<tr>
-			<td><img src="<?php echo $this->getSkinUrl('images/logo.png')?>"></td>
+			<td><img src="<?php echo $this->getLogoPath($storeid) ?>"></td>
 		</tr>
 		<tr>
-			<td>Data: <?php echo Mage::getModel('core/date')->date('d/m/Y H:i:s') ?></td>
+			<td>Data: <?php echo $this->getDate() ?></td>
 		</tr>
 	</table>
-	<table class="table">
-		<tr>
-			<td>#</td>
-			<td>Produto</td>
-			<td>Quantidade</td>
-			<td>Preço Un.</td>
-			<td>Subtotal</td>
-		</tr>
-			<?php foreach ($cart as $key => $item) { ?>
-				<tr>
-					<td><?= $key + 1?></td>
-					<td><?= $item->name; ?></td>
-					<td><?= Mage::helper('core')->currency($item->price, true, false); ?></td>
-					<td><?= $item->qty ?></td>
-					<td><?= Mage::helper('core')->currency($item->subtotal, true, false); ?></td>
-				</tr>
-			<?php } ?>
-		<tr>
-			<td colspan=3>&nbsp;</td>
-			<td>Total</td>
-			<td><?= Mage::helper('core')->currency($this->getQuoteTotal(), true, false);?></td>
-		</tr>
-	</table>
+	<?php if(count($cart)): ?>
+		<table class="table">
+			<tr>
+				<td>#</td>
+				<td>Produto</td>
+				<td>Quantidade</td>
+				<td>Preço Un.</td>
+				<td>Subtotal</td>
+			</tr>
+				<?php foreach ($cart as $key => $item) { ?>
+					<tr>
+						<td><?= $key + 1?></td>
+						<td><?= $item->name; ?></td>
+						<td><?= Mage::helper('core')->currency($item->price, true, false); ?></td>
+						<td><?= $item->qty ?></td>
+						<td><?= Mage::helper('core')->currency($item->subtotal, true, false); ?></td>
+					</tr>
+				<?php } ?>
+			<tr>
+				<td colspan=3>&nbsp;</td>
+				<td>Total</td>
+				<td><?= Mage::helper('core')->currency($this->getQuoteTotal(), true, false);?></td>
+			</tr>
+		</table>
+	<?php else: ?>
+		<table>
+			<tr>
+				<td colspan>Seu carrinho está vazio.</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	<?php endif; ?>
 	<table class="table">
 		<tr>
 			<td rowspan=4>Obs: Os valores e disponibilidade de produtos podem sofrer alteração a qualquer momento.</td>
@@ -46,4 +58,3 @@
 	</table>
 </body>
 </html>
-<table>
