@@ -12,10 +12,19 @@
 			$options 	= new CaioFlavio_PDFCart_Helper_Options();
 			$options->setIsRemoteEnabled(true);
 			
-			$pdfHelper->loadHtml($this->getTemplateHtml());
+			$pdfHelper->loadHtml($this->getTemplateHtml(), 'UTF-8');
 			$pdfHelper->setPaper('A4');
 			$pdfHelper->setOptions($options);
 			$pdfHelper->render();
-			$pdfHelper->stream(PDF_NAME, array('Attachment'=>0));			
+			$pdfHelper->stream(PDF_NAME, array('Attachment'=>0));
+			$pdfFile = $pdfHelper->output();
+			 
+			header('Content-Type: application/pdf');
+			header('Content-Transfer-Encoding: binary');
+			header('Expires: 0');
+			header('Pragma: public');
+			header('Content-Length: ' . mb_strlen($pdfFile, '8bit'));	
+
+			echo $pdfFile;				
 		}
 	}
