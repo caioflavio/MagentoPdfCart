@@ -27,4 +27,46 @@
 
 			echo $pdfFile;				
 		}
+
+		public function sendEmailAction(){
+			$pdfHelper 	= new CaioFlavio_PDFCart_Helper_Dompdf();
+			if(Mage::getStoreConfig('pdfcart/email/active', Mage::app()->getStore()->getId())){
+				try{
+					$options 	= new Supercommerce_PDFCart_Helper_Options();
+					$options->setIsRemoteEnabled(true);
+				    $pdfHelper->load_html($this->getTemplateHtml());
+				    $pdfHelper->setPaper('A4');
+				    $pdfHelper->setOptions($options);
+				    $pdfHelper->render();
+				    $output = $pdfHelper->output();
+				    $file 	= Mage::helper('pdfcart')->getFileInfo();
+
+					if(file_put_contents($file->filePath, $output)){
+						$customer = Mage::getSingleton('customer/session')->getCustomer();
+
+						$templateId 	= Mage::App()->getStore()->getId();
+						$customerEmail  = $customer->getEmail();
+						$customerName 	= $customer->getName();
+						$attachmentPath = $file->pdfDir;
+						$attachmentName	= $file->pdfName;
+						$vars 			= array(
+							'customerName' => $customerName,
+							'customerMail' => $customerEmail,
+							'quoteTime'	   => $file->quoteTime,
+						);
+						if(Mage::helper('pdfcart')->sendPdfEmail($customerEmail, $customerName, $vars, $attachmentPath, $attachmentName, $storeId)){
+							Mage::getSingleton('core/session')->addSuccess('Cotação enviada para ' . $customerEmail);
+							$this->_redirect('checkout/cart');
+						}else{
+							Mage::getSingleton('core/session')->addError('Erro ao enviar cotação para ' . $customerEmail);
+							$this->_redirect('checkout/cart');
+						}
+					}
+				}catch (Exception $e){
+					echo $e->getMessage();
+				}
+			}else{
+				$this->_redirect('/');
+			}
+		}
 	}
