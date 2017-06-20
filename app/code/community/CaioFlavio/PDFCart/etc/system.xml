@@ -48,7 +48,35 @@
                             <show_in_store>1</show_in_store>
                         </document_name>                                              
                     </fields>
-                </general>             
+                </general>
+                <email>
+                    <label>Email</label>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active>
+                            <label>Envia cotação por e-mail?</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Ativa ou desativa link de envio de email.</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </active>
+                        <template>
+                            <label>Template</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                        </template>
+                    </fields>                    
+                </email>             
             </groups>
         </pdfcart>
     </sections>
